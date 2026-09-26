@@ -11,7 +11,7 @@ import logging
 
 import httpx
 
-from config import settings
+from config import HOSPITAL_ADDRESSES, settings
 from models import Case, CreateCase, InboundMessage
 from services import case_service, protocol_service
 
@@ -85,7 +85,10 @@ def _ready_summary(case: Case) -> str:
         lkw_txt = f"LKW {lkw:g} min" if isinstance(lkw, (int, float)) else "LKW unknown"
         routing = case.routing
         if routing:
-            dest = routing.recommended.hospital.short_name
+            dest = routing.recommended.hospital.name
+            address = HOSPITAL_ADDRESSES.get(routing.recommended.hospital.id)
+            if address:
+                dest = f"{dest} ({address})"
             eta = routing.recommended.eta_minutes
             note = ""
             for o in routing.options:
@@ -118,7 +121,10 @@ async def handle_inbound(payload: InboundMessage) -> str:
         destination = case.alert.hospital_id if case.alert else None
         pack = protocol_service.get_pack(case.protocol_id)
         if pack.get("has_routing") and case.routing:
-            await _reply(case, payload.sender, f"Pre-alert sent to {case.routing.recommended.hospital.short_name} stroke team.")
+            hospital = case.routing.recommended.hospital
+            address = HOSPITAL_ADDRESSES.get(hospital.id)
+            where = f" Head to {address}." if address else ""
+            await _reply(case, payload.sender, f"Pre-alert sent to {hospital.short_name} stroke team.{where}")
         else:
             await _reply(case, payload.sender, "Pre-alert sent to MEDEVAC dispatch.")
         return case.id

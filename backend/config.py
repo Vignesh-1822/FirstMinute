@@ -133,6 +133,15 @@ HOSPITALS_SEED: list[dict] = [
     {"id": "harbor", "name": "Harbor Valley Medical", "short_name": "Harbor Valley", "level": "ASRH", "x": 2.5, "y": 3.0},
 ]
 
+# Fictional street addresses for Riverton (never real hospitals); sent to medics and stroke teams.
+HOSPITAL_ADDRESSES: dict[str, str] = {
+    "mercy": "1200 Harborview Ave, Riverton",
+    "stluke": "455 Linden St, Riverton",
+    "riverside": "80 River Rd, Riverton",
+    "northgate": "3100 Northgate Blvd, Riverton",
+    "harbor": "12 Pier Way, Riverton",
+}
+
 # Defaults per SPEC: everything open, CT + neuro IR available, except St.
 # Luke's whose angio suite is occupied - this is what makes the LVO demo
 # scenario reroute from the nearest thrombectomy-capable hospital to Mercy.

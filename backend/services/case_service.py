@@ -15,7 +15,7 @@ import logging
 import random
 from uuid import uuid4
 
-from config import settings
+from config import HOSPITAL_ADDRESSES, settings
 from models import (
     Alert,
     Case,
@@ -251,6 +251,7 @@ def _format_stroke_team_message(case: Case, destination: HospitalStatus, eta: in
         f"CODE STROKE - Unit {case.unit_id}",
         f"RACE {total_txt} - {interpretation}",
         f"Destination: {destination.name}, ETA {eta} min",
+        f"Address: {HOSPITAL_ADDRESSES.get(destination.id, 'n/a')}",
         "",
         f"S: {sbar.situation}",
         f"B: {sbar.background}",
