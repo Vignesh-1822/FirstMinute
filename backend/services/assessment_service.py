@@ -40,19 +40,19 @@ def build_questions(pack: dict) -> dict[str, dict]:
         if item["kind"] == "score":
             questions[item_id] = {
                 "type": "score",
-                "prompt": item.get("jev_question", item["label"]),
+                "instructions": item.get("jev_question", item["label"]),
                 "criteria": item["levels"],
             }
         else:
             key_label = {_option_key(lvl): lvl for lvl in item["levels"]}
             questions[item_id] = {
                 "type": "choice",
-                "prompt": item.get("jev_question", item["label"]),
+                "instructions": item.get("jev_question", item["label"]),
                 "criteria": key_label,
             }
         questions[f"mentioned_{item_id}"] = {
             "type": "noul",
-            "prompt": f"Does the report describe {item['label'].lower()}, including a normal finding, even if not by that name?",
+            "instructions": f"Does the report describe {item['label'].lower()}, including a normal finding, even if not by that name?",
         }
 
     extra = pack.get("extra_questions", {})
@@ -60,12 +60,12 @@ def build_questions(pack: dict) -> dict[str, dict]:
         spec = extra["weak_side"]
         questions["weak_side"] = {
             "type": "choice",
-            "prompt": spec.get("label", "Which side is weak?"),
+            "instructions": spec.get("label", "Which side is weak?"),
             "criteria": spec["criteria"],
         }
 
     for flag in pack.get("flag_questions", []):
-        questions[flag["id"]] = {"type": "noul", "prompt": flag["question"]}
+        questions[flag["id"]] = {"type": "noul", "instructions": flag["question"]}
 
     return questions
 
