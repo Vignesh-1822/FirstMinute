@@ -172,8 +172,9 @@ async def run_assessment(protocol_id: str, transcript: str, now: datetime | None
         weak_answer = result.answers.get("weak_side", {})
         extracted["weak_side"] = weak_answer.get("choice")
 
-        if glucose is not None:
-            active = glucose < ROUTING_POLICY["hypoglycemia_glucose_threshold"]
+        # Only surface the mimic flag when glucose is actually low; a normal value is not a finding.
+        if glucose is not None and glucose < ROUTING_POLICY["hypoglycemia_glucose_threshold"]:
+            active = True
             flags.append(
                 Flag(
                     id="hypoglycemia_mimic",

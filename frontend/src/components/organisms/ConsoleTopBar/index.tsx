@@ -53,9 +53,9 @@ export function ConsoleTopBar({ session, theme, onToggleTheme }: ConsoleTopBarPr
 
       <div className="flex min-w-0 items-center gap-2.5 text-[12.5px]">
         <span className="text-muted-foreground">Case</span>
-        <span className="font-mono text-foreground tabular-nums">{caseData?.id ?? "—"}</span>
+        <span className="font-mono whitespace-nowrap text-foreground tabular-nums" title={caseData?.id}>{caseData ? caseData.id.slice(0, 8) : "—"}</span>
         <span className="text-faint">·</span>
-        <span className="font-mono text-muted-foreground">{caseData?.unit_id ?? "M-14"}</span>
+        <span className="font-mono whitespace-nowrap text-muted-foreground">{caseData?.unit_id ?? "M-14"}</span>
         {caseData?.source === "photon" ? (
           <span className="rounded border px-1.5 py-0.5 text-[10.5px] text-muted-foreground">via iMessage</span>
         ) : null}
