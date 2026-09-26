@@ -1,0 +1,66 @@
+{
+  "id": "medevac_9line",
+  "name": "9-Line MEDEVAC Request",
+  "short": "9-Line",
+  "description": "Casualty evacuation request. Lines 1-2 (location, radio) are extracted by code; lines 3-9 are scored by Jev. Defensive/humanitarian framing — no routing, outcome is a MEDEVAC card.",
+  "max_score": null,
+  "has_routing": false,
+  "items": [
+    {
+      "id": "l3",
+      "label": "Precedence",
+      "kind": "choice",
+      "levels": ["A - Urgent", "B - Urgent Surgical", "C - Priority", "D - Routine", "E - Convenience"],
+      "follow_up": "Confirm precedence: urgent, urgent-surgical, priority, routine, or convenience?",
+      "jev_question": "Line 3, precedence of the evacuation request, one of: A urgent (life, limb, or eyesight threatening, needs evac within 1 hour), B urgent surgical (urgent and needs surgical intervention), C priority (needs prompt care, evac within 4 hours), D routine (evac within 24 hours), E convenience."
+    },
+    {
+      "id": "l4",
+      "label": "Special equipment",
+      "kind": "choice",
+      "levels": ["A - None", "B - Hoist", "C - Extraction equipment", "D - Ventilator"],
+      "follow_up": "Confirm special equipment needed at the pickup site.",
+      "jev_question": "Line 4, special equipment required at the pickup site: A none, B hoist, C extraction equipment, D ventilator."
+    },
+    {
+      "id": "l5",
+      "label": "Patient type",
+      "kind": "choice",
+      "levels": ["L - Litter", "A - Ambulatory", "Both"],
+      "follow_up": "Confirm patient type: litter, ambulatory, or both.",
+      "jev_question": "Line 5, number/type of patients: L litter (cannot walk, must be carried), A ambulatory (can walk/sit unassisted), or both litter and ambulatory patients present."
+    },
+    {
+      "id": "l6",
+      "label": "Security at pickup",
+      "kind": "choice",
+      "levels": ["N - No enemy troops", "P - Possible enemy troops", "E - Enemy troops in area, approach with caution", "X - Armed escort required"],
+      "follow_up": "Confirm security status at the pickup site.",
+      "jev_question": "Line 6, security at the pickup site: N no enemy troops in area, P possible enemy troops in area (approach with caution), E enemy troops in area (approach with caution), X armed escort required."
+    },
+    {
+      "id": "l7",
+      "label": "Marking",
+      "kind": "choice",
+      "levels": ["A - Panels", "B - Pyrotechnic", "C - Smoke", "D - None", "E - Other"],
+      "follow_up": "Confirm how the pickup site will be marked.",
+      "jev_question": "Line 7, method of marking the pickup site: A panels, B pyrotechnic signal, C smoke signal, D none, E other (specify)."
+    },
+    {
+      "id": "l8",
+      "label": "Nationality/status",
+      "kind": "choice",
+      "levels": ["A - US Military", "B - US Civilian", "C - Non-US Military", "D - Non-US Civilian", "E - EPW"],
+      "follow_up": "Confirm patient nationality and status.",
+      "jev_question": "Line 8, patient nationality and status: A US military, B US civilian, C non-US military, D non-US civilian, E enemy prisoner of war (EPW)."
+    },
+    {
+      "id": "l9",
+      "label": "NBC contamination",
+      "kind": "choice",
+      "levels": ["N - None", "C - Chemical", "B - Biological", "R - Radiological", "NUC - Nuclear"],
+      "follow_up": "Confirm NBC contamination status.",
+      "jev_question": "Line 9, NBC (nuclear/biological/chemical) contamination at the pickup site: N none, C chemical, B biological, R radiological, NUC nuclear."
+    }
+  ]
+}

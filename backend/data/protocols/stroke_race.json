@@ -1,0 +1,79 @@
+{
+  "id": "stroke_race",
+  "name": "RACE Stroke Scale",
+  "short": "RACE",
+  "description": "Rapid Arterial oCclusion Evaluation — 0-9, a total of 5 or more suggests a large vessel occlusion (LVO).",
+  "max_score": 9,
+  "has_routing": true,
+  "items": [
+    {
+      "id": "face",
+      "label": "Facial palsy",
+      "kind": "score",
+      "levels": ["absent", "mild", "moderate-severe"],
+      "follow_up": "Any facial droop — ask them to smile?",
+      "jev_question": "Facial palsy on examination. 0 = absent/symmetric smile, 1 = mild asymmetry, 2 = moderate-severe droop (one side barely or does not move)."
+    },
+    {
+      "id": "arm",
+      "label": "Arm motor",
+      "kind": "score",
+      "levels": ["normal/mild", "moderate (drifts, some effort vs gravity)", "severe (no effort vs gravity)"],
+      "follow_up": "Can they hold both arms up for 10 seconds?",
+      "jev_question": "Arm motor drift. 0 = normal or mild drift only, 1 = moderate (arm drifts down but shows some effort against gravity), 2 = severe (no effort against gravity, arm falls immediately)."
+    },
+    {
+      "id": "leg",
+      "label": "Leg motor",
+      "kind": "score",
+      "levels": ["normal/mild", "moderate", "severe"],
+      "follow_up": "Can they lift each leg off the stretcher?",
+      "jev_question": "Leg motor drift. 0 = normal or mild drift only, 1 = moderate (drifts down, some effort against gravity), 2 = severe (no effort against gravity)."
+    },
+    {
+      "id": "gaze",
+      "label": "Head & gaze deviation",
+      "kind": "score",
+      "levels": ["absent", "present"],
+      "follow_up": "Are the eyes or head deviated to one side?",
+      "jev_question": "Forced head and/or gaze deviation to one side. 0 = absent, 1 = present."
+    },
+    {
+      "id": "cortical",
+      "label": "Aphasia / Agnosia",
+      "kind": "score",
+      "levels": ["normal", "one task failed", "both failed"],
+      "follow_up": "Can they follow two commands / recognise their weak arm?",
+      "jev_question": "Cortical signs: aphasia (if right-sided weakness — can they follow two simple commands?) or agnosia (if left-sided weakness — do they recognise their own weak arm and acknowledge the deficit?). 0 = normal/both tasks pass, 1 = one task failed, 2 = both tasks failed."
+    }
+  ],
+  "extra_questions": {
+    "weak_side": {
+      "kind": "choice",
+      "label": "Side of weakness",
+      "criteria": {
+        "left": "Weakness, droop, or drift is on the patient's left side",
+        "right": "Weakness, droop, or drift is on the patient's right side",
+        "bilateral": "Weakness reported on both sides",
+        "none_reported": "No lateralized weakness described in the report"
+      }
+    }
+  },
+  "flag_questions": [
+    {
+      "id": "flag_seizure",
+      "label": "Seizure at onset",
+      "question": "Did the patient have a witnessed seizure at symptom onset or during the exam (possible seizure mimic)?"
+    },
+    {
+      "id": "flag_head_trauma",
+      "label": "Head trauma suspected",
+      "question": "Is there any evidence or history of head trauma (fall, hit head, visible injury)?"
+    },
+    {
+      "id": "flag_anticoagulant",
+      "label": "On anticoagulant/antiplatelet",
+      "question": "Is the patient on an anticoagulant or antiplatelet medication (blood thinner)?"
+    }
+  ]
+}

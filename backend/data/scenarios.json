@@ -1,0 +1,55 @@
+[
+  {
+    "id": "stroke_lvo",
+    "protocol_id": "stroke_race",
+    "title": "Clear LVO",
+    "subtitle": "All RACE items described, LKW 40 min — expect Mercy (St. Luke's IR unavailable)",
+    "transcript": "Medic 14 to FirstMinute, got a 68 year old male, wife found him on the kitchen floor, last seen normal about 40 minutes ago, left side's pretty much flaccid, can't lift the left arm at all against gravity, left leg drifts down, big left facial droop, eyes are deviated to the right, he doesn't recognise his left arm as his own, glucose 118, on no blood thinners, no seizure activity witnessed, no head trauma that we can see.",
+    "unit_position": { "x": 7, "y": 8 },
+    "follow_up_answers": {}
+  },
+  {
+    "id": "stroke_missing_gaze",
+    "protocol_id": "stroke_race",
+    "title": "Missing gaze item",
+    "subtitle": "Gaze never mentioned — follow-up asked, answer pushes RACE to LVO territory",
+    "transcript": "Medic 22 to FirstMinute, 74 year old female, husband says she was fine at breakfast, last seen normal 65 minutes ago according to her husband, moderate right facial droop, right arm drifts down when I ask her to hold it up, right leg also drifts, she's got expressive aphasia, can't get her words out, glucose 104, not on any blood thinners, no seizure activity, no head trauma.",
+    "unit_position": { "x": 9, "y": 5 },
+    "follow_up_answers": {
+      "gaze": "Yes, eyes deviated to the right."
+    }
+  },
+  {
+    "id": "stroke_minor",
+    "protocol_id": "stroke_race",
+    "title": "Minor deficit",
+    "subtitle": "Mild facial droop only — RACE ~1, nearest PSC (Riverside)",
+    "transcript": "Medic 5 to FirstMinute, 55 year old male, alert and talking, wife noticed a slight droop on the right side of his mouth, last seen normal about 20 minutes ago, arms are strong, holding both arms up fine, no drift, legs are strong, moving everything fine, no gaze deviation, eyes are following me fine, he's naming things correctly, no aphasia, glucose 102, not on any blood thinners, no seizure activity, no head trauma.",
+    "unit_position": { "x": 9, "y": 6.5 },
+    "follow_up_answers": {}
+  },
+  {
+    "id": "stroke_mimic",
+    "protocol_id": "stroke_race",
+    "title": "Hypoglycemia mimic",
+    "subtitle": "BGL 42, confused, ambiguous weakness — hypoglycemia flag should dominate",
+    "transcript": "Medic 9 to FirstMinute, found a 45 year old diabetic male confused and sweaty on the sidewalk, family says he skipped lunch, some left-sided weakness in his arm and leg reported by bystanders but honestly it's hard to tell how much strength he's got, honestly not sure about any facial droop either, things are a little unclear with him this confused, glucose is 42 on the meter, we're pushing dextrose now, no known last seen well time, no seizures witnessed, no head trauma, not on any blood thinners as far as we know.",
+    "unit_position": { "x": 4, "y": 5 },
+    "follow_up_answers": {
+      "face": "Hard to say — maybe a slight droop on the left, we're not certain.",
+      "gaze": "No gaze deviation that we could see.",
+      "cortical": "He's too confused to test commands right now."
+    }
+  },
+  {
+    "id": "medevac_urgent",
+    "protocol_id": "medevac_9line",
+    "title": "9-line with ambiguous marking",
+    "subtitle": "Spoken 9-line, one ambiguous line (marking) — expect readback",
+    "transcript": "Vulture Six, this is Reaper Three, requesting a 9-line, over. Grid Mike Bravo 4 1 2 5 6 7, over. Frequency 30.55, callsign Reaper Three. One urgent surgical casualty, gunshot wound to the abdomen. Special equipment, none needed. One litter patient. Pickup site has possible enemy in the area, proceed with caution. Marking will be... smoke, I think, or maybe panels, hard to tell in this light, we'll pop something when you're inbound. Patient is US military. NBC, nothing, all clear. Over.",
+    "unit_position": null,
+    "follow_up_answers": {
+      "l7": "It's smoke — purple smoke, just popped it now."
+    }
+  }
+]
