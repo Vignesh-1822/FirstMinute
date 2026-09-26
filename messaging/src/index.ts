@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { UnsupportedError } from "spectrum-ts";
@@ -6,6 +7,9 @@ import { logger } from "./logger.js";
 import { connectBridge, type Bridge } from "./photon.js";
 import { forwardInbound } from "./backend.js";
 import { groupRequestSchema, sendRequestSchema } from "./types.js";
+
+// Load messaging/.env when present (Node >= 21.7); real env vars still take precedence.
+if (existsSync(".env")) process.loadEnvFile(".env");
 
 const config = loadConfig();
 let bridge: Bridge | undefined;
