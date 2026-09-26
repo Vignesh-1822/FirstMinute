@@ -8,6 +8,7 @@ it just isn't actually delivered.
 from __future__ import annotations
 
 import logging
+import re
 
 import httpx
 
@@ -106,10 +107,24 @@ def _ready_summary(case: Case) -> str:
     )
 
 
+_NEW_CASE_COMMANDS = {"NEW", "RESET", "NEW CASE"}
+# A fresh report names the patient ("68 year old", "72 y/o") or a protocol; follow-up answers don't.
+_NEW_REPORT_PATTERN = re.compile(r"\b\d{1,3}\s*[- ]?\s*(years?[- ]old|yrs?[- ]old|y/?o)\b|\b9[- ]line\b|\bmedevac\b", re.IGNORECASE)
+
+
+def _starts_new_report(text: str) -> bool:
+    return bool(_NEW_REPORT_PATTERN.search(text))
+
+
 async def handle_inbound(payload: InboundMessage) -> str:
+    if payload.text.strip().upper() in _NEW_CASE_COMMANDS:
+        _sender_case.pop(payload.sender, None)
+        await send(payload.sender, "New case started. Describe the patient.")
+        return ""
+
     case_id = _sender_case.get(payload.sender)
     case = case_service.case_store.get_case(case_id) if case_id else None
-    if case is None or case.status == "alerted":
+    if case is None or case.status == "alerted" or _starts_new_report(payload.text):
         protocol_id = _pick_protocol(payload.text)
         case = await case_service.create_case(CreateCase(protocol_id=protocol_id, source="photon", unit_id=payload.sender))
         _sender_case[payload.sender] = case.id
