@@ -119,8 +119,16 @@ export async function connectBridge(config: Config): Promise<Bridge | undefined>
         return platform.space.get(chatId);
       },
       async createGroup(participants: string[], name: string): Promise<Space> {
+        // A single participant yields a DM, which cannot be renamed; the alert text still carries the group name.
+        if (participants.length === 1) return platform.space.create(participants[0] as string);
         const group = await platform.space.create(participants);
-        await group.rename(name);
+        try {
+          await group.rename(name);
+        } catch (err) {
+          logger.warn("group rename failed; continuing unnamed", {
+            error: err instanceof Error ? err.message : String(err),
+          });
+        }
         return group;
       },
       async stop(): Promise<void> {
