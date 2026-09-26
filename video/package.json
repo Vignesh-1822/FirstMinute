@@ -1,0 +1,27 @@
+{
+  "name": "firstminute-video",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FirstMinute pitch film (Remotion)",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render FirstMinutePitch out/firstminute-pitch.mp4",
+    "poster": "remotion still FirstMinutePoster out/poster.png --frame=179",
+    "typecheck": "tsc --noEmit",
+    "stills": "node scripts/render-stills.mjs"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.529",
+    "@remotion/google-fonts": "4.0.529",
+    "@remotion/transitions": "4.0.529",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "remotion": "4.0.529"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.8",
+    "typescript": "5.8.3",
+    "@remotion/bundler": "4.0.529",
+    "@remotion/renderer": "4.0.529"
+  }
+}
