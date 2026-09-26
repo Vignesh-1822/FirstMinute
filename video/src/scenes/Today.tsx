@@ -15,12 +15,12 @@ const FORM_ROWS = [
   "Blood glucose",
 ];
 
-const SPLIT = 160;
+const SPLIT = 118;
 
 /** A guided stroke form on a phone: rows get ticked one by one while a timer runs. */
 const GuidedForm: React.FC = () => {
   const frame = useCurrentFrame();
-  const formProgress = progress(frame, 20, 125, EASE_IN_OUT);
+  const formProgress = progress(frame, 14, 96, EASE_IN_OUT);
   const seconds = Math.round(formProgress * 118);
   const activeRow = Math.min(FORM_ROWS.length - 1, Math.floor(formProgress * FORM_ROWS.length));
   const tapPhase = (formProgress * FORM_ROWS.length) % 1;
@@ -133,8 +133,8 @@ const GuidedForm: React.FC = () => {
 const TransportTimeline: React.FC<{ start: number }> = ({ start }) => {
   const frame = useCurrentFrame();
   const local = frame - start;
-  const travel = progress(local, 20, 110, EASE_IN_OUT);
-  const radioReveal = progress(local, 70, 30);
+  const travel = progress(local, 10, 80, EASE_IN_OUT);
+  const radioReveal = progress(local, 45, 24);
   const trackWidth = 720;
   const radioStart = trackWidth * (20 / 25);
   const waves = breathe(frame, 1.6);
@@ -254,8 +254,8 @@ const TransportTimeline: React.FC<{ start: number }> = ({ start }) => {
 /** 3. Today, part one: the guided form, then the late radio call. */
 export const TodayForm: React.FC = () => {
   const frame = useCurrentFrame();
-  const partA = fadeOut(frame, SPLIT - 10, 24);
-  const partB = progress(frame, SPLIT + 4, 30);
+  const partA = fadeOut(frame, SPLIT - 8, 18);
+  const partB = progress(frame, SPLIT + 2, 22);
 
   return (
     <Backdrop>
@@ -284,15 +284,15 @@ export const TodayForm: React.FC = () => {
             gap: 30,
           }}
         >
-          <FadeUp delay={16} duration={32}>
+          <FadeUp delay={10} duration={26}>
             <Headline size={72}>A guided form on a phone.</Headline>
           </FadeUp>
-          <FadeUp delay={40} duration={32}>
+          <FadeUp delay={26} duration={26}>
             <div style={{ fontSize: 44, color: color.muted, lineHeight: 1.3, letterSpacing: "-0.01em" }}>
               About two minutes of tapping, mid-transport.
             </div>
           </FadeUp>
-          <FadeUp delay={60} duration={30}>
+          <FadeUp delay={40} duration={24}>
             <Citation>JoinTriage, vendor figure</Citation>
           </FadeUp>
         </div>
@@ -315,15 +315,15 @@ export const TodayForm: React.FC = () => {
             gap: 30,
           }}
         >
-          <FadeUp delay={SPLIT + 10} duration={32}>
+          <FadeUp delay={SPLIT + 6} duration={26}>
             <Headline size={72}>Then a radio call.</Headline>
           </FadeUp>
-          <FadeUp delay={SPLIT + 34} duration={32}>
+          <FadeUp delay={SPLIT + 20} duration={26}>
             <div style={{ fontSize: 44, color: color.muted, lineHeight: 1.3, letterSpacing: "-0.01em" }}>
               Often only in the last five minutes.
             </div>
           </FadeUp>
-          <FadeUp delay={SPLIT + 56} duration={30}>
+          <FadeUp delay={SPLIT + 34} duration={24}>
             <Citation>NPSTC report</Citation>
           </FadeUp>
         </div>
@@ -354,13 +354,13 @@ const Person: React.FC<{ dashed: boolean; tint: string }> = ({ dashed, tint }) =
   </svg>
 );
 
-const GAP_SPLIT = 150;
+const GAP_SPLIT = 110;
 
 /** 4. Today, part two: the pre-alert gap, and the honest take on existing tools. */
 export const TodayGap: React.FC = () => {
   const frame = useCurrentFrame();
-  const partA = fadeOut(frame, GAP_SPLIT - 12, 24);
-  const partB = progress(frame, GAP_SPLIT + 2, 24);
+  const partA = fadeOut(frame, GAP_SPLIT - 8, 18);
+  const partB = progress(frame, GAP_SPLIT + 2, 20);
 
   return (
     <Backdrop>
@@ -371,13 +371,13 @@ export const TodayGap: React.FC = () => {
         <div style={{ display: "flex", alignItems: "center", gap: 110 }}>
           <div style={{ display: "flex", gap: 26 }}>
             {[0, 1, 2].map((index) => (
-              <FadeUp key={index} delay={10 + index * 8} duration={30}>
+              <FadeUp key={index} delay={6 + index * 6} duration={26}>
                 <Person dashed={index === 2} tint={index === 2 ? color.signal : color.faint} />
               </FadeUp>
             ))}
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-            <FadeUp delay={20} duration={34}>
+            <FadeUp delay={12} duration={28}>
               <div
                 style={{
                   fontFamily: FONT_MONO,
@@ -391,7 +391,7 @@ export const TodayGap: React.FC = () => {
                 1 in 3
               </div>
             </FadeUp>
-            <FadeUp delay={44} duration={32}>
+            <FadeUp delay={28} duration={26}>
               <div style={{ fontSize: 48, color: color.textSoft, letterSpacing: "-0.02em", maxWidth: 900 }}>
                 stroke patients arrive without a pre‑alert.
               </div>
@@ -400,8 +400,8 @@ export const TodayGap: React.FC = () => {
         </div>
       </AbsoluteFill>
       <FadeUp
-        delay={70}
-        duration={30}
+        delay={40}
+        duration={24}
         style={{ position: "absolute", left: 140, bottom: 90, opacity: partA }}
       >
         <Citation>GWTG-Stroke registry, 2003–2011</Citation>
@@ -416,12 +416,12 @@ export const TodayGap: React.FC = () => {
           gap: 40,
         }}
       >
-        <FadeUp delay={GAP_SPLIT + 6} duration={34}>
+        <FadeUp delay={GAP_SPLIT + 4} duration={28}>
           <div style={{ fontFamily: FONT_SANS, fontSize: 56, color: color.muted, letterSpacing: "-0.02em", lineHeight: 1.2 }}>
             Tools like Pulsara and JoinTriage put the form on a phone.
           </div>
         </FadeUp>
-        <FadeUp delay={GAP_SPLIT + 60} duration={36}>
+        <FadeUp delay={GAP_SPLIT + 42} duration={30}>
           <Headline size={96} weight={500}>
             The form is still the bottleneck.
           </Headline>

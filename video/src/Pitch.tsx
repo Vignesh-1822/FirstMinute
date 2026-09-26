@@ -12,7 +12,7 @@ import { EASE_IN_OUT, FONT_SANS, color } from "./theme";
 import { SCENE_ORDER, SCENES, SceneKey, TOTAL_FRAMES, TRANSITION_FRAMES } from "./timeline";
 
 export type PitchProps = {
-  /** Optional file in video/public, e.g. "music.mp3". Rendered silent when null. */
+  /** File in video/public. Defaults to the original score "music.mp3"; null renders silent. */
   musicSrc: string | null;
   /** Optional voiceover file in video/public. */
   voiceoverSrc: string | null;
@@ -36,10 +36,13 @@ const SCENE_COMPONENTS: Record<SceneKey, React.FC> = {
 const sceneTiming = linearTiming({ durationInFrames: TRANSITION_FRAMES, easing: EASE_IN_OUT });
 const sceneFade = fade({ shouldFadeOutExitingScene: true });
 
-/** Music bed volume: 2 s fade in, 3 s fade out, sits under a voiceover at 0.35. */
+/**
+ * Music bed volume. The composed track (public/music.mp3) already has its own fades;
+ * these short guards only matter for a dropped-in track. Ducked to 0.35 under a voiceover.
+ */
 const musicVolume = (frame: number, ducked: boolean): number => {
-  const peak = ducked ? 0.35 : 0.8;
-  return interpolate(frame, [0, 60, TOTAL_FRAMES - 90, TOTAL_FRAMES], [0, peak, peak, 0], {
+  const peak = ducked ? 0.35 : 1;
+  return interpolate(frame, [0, 15, TOTAL_FRAMES - 30, TOTAL_FRAMES], [0, peak, peak, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });

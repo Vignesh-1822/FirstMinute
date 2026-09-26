@@ -8,7 +8,7 @@ import { color, EASE_IN_OUT, FONT_MONO, type } from "../theme";
 /** 1. Cold open: a counter of brain cells lost, one soft red pulse behind it. */
 export const ColdOpen: React.FC = () => {
   const frame = useCurrentFrame();
-  const count = progress(frame, 18, 84, EASE_IN_OUT) * 1_900_000;
+  const count = progress(frame, 10, 60, EASE_IN_OUT) * 1_900_000;
   const glowIn = progress(frame, 0, 60);
   const glowOpacity = glowIn * (0.4 + 0.25 * breathe(frame, 3.2));
 
@@ -36,7 +36,7 @@ export const ColdOpen: React.FC = () => {
             {formatThousands(count)}
           </div>
         </FadeUp>
-        <FadeUp delay={72} duration={36}>
+        <FadeUp delay={40} duration={30}>
           <div
             style={{
               fontSize: 54,
@@ -53,7 +53,7 @@ export const ColdOpen: React.FC = () => {
           </div>
         </FadeUp>
       </AbsoluteFill>
-      <FadeUp delay={110} duration={30} style={{ position: "absolute", left: 140, bottom: 90 }}>
+      <FadeUp delay={70} duration={24} style={{ position: "absolute", left: 140, bottom: 90 }}>
         <Citation>Saver, Stroke 2006</Citation>
       </FadeUp>
     </Backdrop>
@@ -69,7 +69,7 @@ const QUESTIONS = [
 /** 2. The moment: three decisions, minutes to make them. */
 export const Moment: React.FC = () => {
   const frame = useCurrentFrame();
-  const settle = progress(frame, 96, 40);
+  const settle = progress(frame, 58, 30);
   const headerTop = clampMap(settle, [0, 1], [470, 200]);
   const headerScale = clampMap(settle, [0, 1], [1, 0.6]);
   const headerColour = settle > 0.5 ? color.muted : color.text;
@@ -85,7 +85,7 @@ export const Moment: React.FC = () => {
           transformOrigin: "left top",
         }}
       >
-        <FadeUp delay={10} duration={34}>
+        <FadeUp delay={6} duration={28}>
           <Headline size={type.headline} colour={headerColour}>
             A paramedic has minutes to decide three things.
           </Headline>
@@ -102,9 +102,9 @@ export const Moment: React.FC = () => {
         }}
       >
         {QUESTIONS.map((question, index) => {
-          const delay = 112 + index * 40;
+          const delay = 64 + index * 22;
           return (
-            <FadeUp key={question} delay={delay} duration={34} distance={34}>
+            <FadeUp key={question} delay={delay} duration={28} distance={30}>
               <div style={{ display: "flex", alignItems: "baseline", gap: 44 }}>
                 <span style={{ fontFamily: FONT_MONO, fontSize: 36, color: color.dim, width: 60 }}>
                   {String(index + 1).padStart(2, "0")}
@@ -118,7 +118,7 @@ export const Moment: React.FC = () => {
                   marginTop: 26,
                   marginLeft: 104,
                   height: 1,
-                  width: 1000 * progress(frame, delay + 10, 50),
+                  width: 1000 * progress(frame, delay + 8, 36),
                   backgroundColor: color.hairline,
                 }}
               />

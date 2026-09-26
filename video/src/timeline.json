@@ -1,0 +1,25 @@
+{
+  "transitionFrames": 15,
+  "howSteps": {
+    "talk": 185,
+    "score": 210,
+    "ask": 215,
+    "route": 225,
+    "alert": 195
+  },
+  "scenes": {
+    "coldOpen": 150,
+    "moment": 195,
+    "todayForm": 235,
+    "todayGap": 240,
+    "reveal": 150,
+    "how": null,
+    "speed": 150,
+    "impact": 150,
+    "safety": 150,
+    "beyond": 145,
+    "builtWith": 120,
+    "close": 150
+  },
+  "order": ["coldOpen", "moment", "todayForm", "todayGap", "reveal", "how", "speed", "impact", "safety", "beyond", "builtWith", "close"]
+}

@@ -65,7 +65,7 @@ export const StepLayout: React.FC<StepLayoutProps> = ({ index, headline, support
           gap: 34,
         }}
       >
-        <FadeUp delay={6} duration={26}>
+        <FadeUp delay={4} duration={22}>
           <div
             style={{
               fontFamily: FONT_MONO,
@@ -78,12 +78,12 @@ export const StepLayout: React.FC<StepLayoutProps> = ({ index, headline, support
             <span style={{ color: color.faint }}> / 05</span>
           </div>
         </FadeUp>
-        <FadeUp delay={12} duration={32}>
+        <FadeUp delay={8} duration={26}>
           <Headline size={68} weight={500}>
             {headline}
           </Headline>
         </FadeUp>
-        <FadeUp delay={36} duration={30}>
+        <FadeUp delay={22} duration={24}>
           <div
             style={{
               fontSize: 38,

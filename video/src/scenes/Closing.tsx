@@ -19,8 +19,8 @@ type SpeedBarProps = {
 
 const SpeedBar: React.FC<SpeedBarProps> = ({ label, value, detail, share, start, tint, emphasis }) => {
   const frame = useCurrentFrame();
-  const grow = progress(frame, start, 70, EASE_IN_OUT);
-  const textIn = progress(frame, start + 30, 30);
+  const grow = progress(frame, start, 50, EASE_IN_OUT);
+  const textIn = progress(frame, start + 20, 24);
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
       <div style={{ display: "flex", alignItems: "baseline", gap: 24 }}>
@@ -71,30 +71,30 @@ export const Speed: React.FC = () => (
       <FadeUp delay={8} duration={32}>
         <Headline size={88}>From minutes to seconds.</Headline>
       </FadeUp>
-      <FadeUp delay={30} duration={30}>
+      <FadeUp delay={18} duration={26}>
         <SpeedBar
           label="Today"
           value="2–5 min"
           detail="forms and calls"
           share={1}
-          start={40}
+          start={24}
           tint={color.faint}
           emphasis={false}
         />
       </FadeUp>
-      <FadeUp delay={62} duration={30}>
+      <FadeUp delay={34} duration={26}>
         <SpeedBar
           label="FirstMinute"
           value="seconds"
           detail="speak, confirm, done"
           share={0.03}
-          start={80}
+          start={44}
           tint={color.text}
           emphasis
         />
       </FadeUp>
     </AbsoluteFill>
-    <FadeUp delay={130} duration={30} style={{ position: "absolute", left: 370, bottom: 110 }}>
+    <FadeUp delay={70} duration={24} style={{ position: "absolute", left: 370, bottom: 110 }}>
       <Citation style={{ fontSize: 28 }}>Each Jev decision takes ~100–400 ms (independent benchmarks).</Citation>
     </FadeUp>
   </Backdrop>
@@ -103,12 +103,12 @@ export const Speed: React.FC = () => (
 /** 8. Impact: the right hospital first time. */
 export const Impact: React.FC = () => {
   const frame = useCurrentFrame();
-  const count = Math.round(progress(frame, 16, 60, EASE_IN_OUT) * 119);
+  const count = Math.round(progress(frame, 8, 44, EASE_IN_OUT) * 119);
   return (
     <Backdrop glow={{ color: color.signalGlow, x: 30, y: 50, size: 700, opacity: 0.25 }}>
       <AbsoluteFill style={{ justifyContent: "center", alignItems: "center" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 90 }}>
-          <FadeUp delay={10} duration={34}>
+          <FadeUp delay={6} duration={28}>
             <div
               style={{
                 fontFamily: FONT_MONO,
@@ -126,12 +126,12 @@ export const Impact: React.FC = () => {
             </div>
           </FadeUp>
           <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
-            <FadeUp delay={44} duration={34}>
+            <FadeUp delay={24} duration={28}>
               <div style={{ fontSize: 54, color: color.text, letterSpacing: "-0.02em", lineHeight: 1.18, fontWeight: 500 }}>
                 sooner to clot removal
               </div>
             </FadeUp>
-            <FadeUp delay={70} duration={34}>
+            <FadeUp delay={40} duration={28}>
               <div style={{ fontSize: 44, color: color.muted, letterSpacing: "-0.02em", lineHeight: 1.25 }}>
                 when the first hospital is the right one.
               </div>
@@ -139,7 +139,7 @@ export const Impact: React.FC = () => {
           </div>
         </div>
       </AbsoluteFill>
-      <FadeUp delay={100} duration={30} style={{ position: "absolute", left: 220, bottom: 90 }}>
+      <FadeUp delay={50} duration={24} style={{ position: "absolute", left: 220, bottom: 90 }}>
         <Citation>Direct-to-thrombectomy routing vs. transfer · Maryland pilot</Citation>
       </FadeUp>
     </Backdrop>
@@ -162,7 +162,7 @@ export const Safety: React.FC = () => (
     </div>
     <AbsoluteFill style={{ justifyContent: "center", paddingLeft: 300, gap: 56, paddingTop: 60 }}>
       {SAFETY.map((item, index) => (
-        <FadeUp key={item.line} delay={16 + index * 34} duration={34}>
+        <FadeUp key={item.line} delay={10 + index * 22} duration={28}>
           <div style={{ display: "flex", alignItems: "baseline", gap: 48 }}>
             <Headline size={96} weight={500} style={{ width: 860 }}>
               {item.line}
@@ -244,15 +244,15 @@ export const Beyond: React.FC = () => (
   <Backdrop>
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", gap: 80 }}>
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 18 }}>
-        <FadeUp delay={8} duration={32}>
+        <FadeUp delay={6} duration={26}>
           <Headline size={88}>Same reflex. Any protocol.</Headline>
         </FadeUp>
       </div>
       <div style={{ display: "flex", gap: 36 }}>
-        <PackCard tag="PACK 01" title="Stroke" items={["RACE scale", "live routing", "CODE STROKE"]} state="live" delay={40} accent={color.signal} />
-        <PackCard tag="PACK 02" title="9-Line MEDEVAC" items={["9 lines", "readback", "evac card"]} state="live" delay={54} accent={color.text} />
-        <PackCard tag="PACK 03" title="STEMI" items={["ECG findings", "cath lab", "pre-alert"]} state="next" delay={68} accent={color.faint} />
-        <PackCard tag="PACK 04" title="Trauma" items={["field triage", "trauma level", "team call"]} state="next" delay={82} accent={color.faint} />
+        <PackCard tag="PACK 01" title="Stroke" items={["RACE scale", "live routing", "CODE STROKE"]} state="live" delay={22} accent={color.signal} />
+        <PackCard tag="PACK 02" title="9-Line MEDEVAC" items={["9 lines", "readback", "evac card"]} state="live" delay={30} accent={color.text} />
+        <PackCard tag="PACK 03" title="STEMI" items={["ECG findings", "cath lab", "pre-alert"]} state="next" delay={38} accent={color.faint} />
+        <PackCard tag="PACK 04" title="Trauma" items={["field triage", "trauma level", "team call"]} state="next" delay={46} accent={color.faint} />
       </div>
     </AbsoluteFill>
   </Backdrop>
@@ -271,7 +271,7 @@ const SPONSORS: { name: string; role: string }[] = [
 export const BuiltWith: React.FC = () => (
   <Backdrop>
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", gap: 90 }}>
-      <FadeUp delay={6} duration={28}>
+      <FadeUp delay={4} duration={22}>
         <Eyebrow>Built with</Eyebrow>
       </FadeUp>
       <div
@@ -283,7 +283,7 @@ export const BuiltWith: React.FC = () => (
         }}
       >
         {SPONSORS.map((sponsor, index) => (
-          <FadeUp key={sponsor.name} delay={18 + index * 7} duration={32}>
+          <FadeUp key={sponsor.name} delay={10 + index * 5} duration={26}>
             <div style={{ display: "flex", flexDirection: "column", gap: 12, borderTop: `1px solid ${color.hairline}`, paddingTop: 26 }}>
               <span style={{ fontFamily: FONT_SANS, fontSize: 52, fontWeight: 600, letterSpacing: "-0.035em", color: color.text }}>
                 {sponsor.name}

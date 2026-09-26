@@ -31,12 +31,12 @@ const UNIT = { x: 7, y: 8 };
 const ROUTE_STLUKE = "M 336 384 L 336 456 L 240 456";
 const ROUTE_MERCY = "M 336 384 L 528 384 L 528 192 L 648 192";
 
-const SCAN_START = 34;
-const SCAN_STEP = 12;
-const ROUTE_A_AT = 100;
-const FLIP_AT = 136;
-const ROUTE_B_AT = 170;
-const CHOSEN_AT = 206;
+const SCAN_START = 22;
+const SCAN_STEP = 10;
+const ROUTE_A_AT = 70;
+const FLIP_AT = 98;
+const ROUTE_B_AT = 124;
+const CHOSEN_AT = 152;
 
 const TRACE: { at: number; text: string; tone: string }[] = [
   { at: ROUTE_A_AT, text: "RACE 7 ≥ 5 → LVO suspected, needs thrombectomy", tone: color.muted },
@@ -79,8 +79,8 @@ const Streets: React.FC = () => {
 
 const RivertonMap: React.FC = () => {
   const frame = useCurrentFrame();
-  const routeA = progress(frame, ROUTE_A_AT, 30, EASE_IN_OUT) * (1 - progress(frame, FLIP_AT + 10, 26, EASE_IN_OUT));
-  const routeB = progress(frame, ROUTE_B_AT, 44, EASE_IN_OUT);
+  const routeA = progress(frame, ROUTE_A_AT, 24, EASE_IN_OUT) * (1 - progress(frame, FLIP_AT + 8, 20, EASE_IN_OUT));
+  const routeB = progress(frame, ROUTE_B_AT, 36, EASE_IN_OUT);
   const flipped = progress(frame, FLIP_AT, 20);
   const chosen = progress(frame, CHOSEN_AT, 30);
   const unitPulse = breathe(frame, 2);
@@ -276,7 +276,7 @@ export const HowRoute: React.FC = () => {
       support="A browser agent reads the regional status board, via Browserbase + Stagehand."
     >
       <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-        <FadeUp delay={10} duration={30}>
+        <FadeUp delay={6} duration={26}>
           <div
             style={{
               display: "flex",
@@ -292,7 +292,7 @@ export const HowRoute: React.FC = () => {
             </span>
           </div>
         </FadeUp>
-        <FadeUp delay={14} duration={36} distance={30}>
+        <FadeUp delay={8} duration={30} distance={30}>
           <RivertonMap />
         </FadeUp>
         <div style={{ display: "flex", flexDirection: "column", gap: 8, minHeight: 120 }}>

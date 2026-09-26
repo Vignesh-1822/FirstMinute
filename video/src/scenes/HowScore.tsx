@@ -14,8 +14,8 @@ export const HowScore: React.FC = () => (
     headline={<>Jev scores<br />the stroke scale<br />in milliseconds.</>}
     support="Every item gets a score and a confidence."
   >
-    <FadeUp delay={14} duration={36} distance={40}>
-      <RaceCard start={62} pulseAt={52} />
+    <FadeUp delay={8} duration={30} distance={40}>
+      <RaceCard start={38} pulseAt={30} />
     </FadeUp>
   </StepLayout>
 );
@@ -66,16 +66,16 @@ const ChatLine: React.FC<ChatLineProps> = ({ appearAt, side, author, children })
   );
 };
 
-const ASK_AT = 86;
-const ANSWER_AT = 150;
-const RESOLVE_AT = 182;
+const ASK_AT = 56;
+const ANSWER_AT = 108;
+const RESOLVE_AT = 134;
 
 /** Step 3: when unsure, it asks only for what is missing. */
 export const HowAsk: React.FC = () => {
   const frame = useCurrentFrame();
   const resolved = frame >= RESOLVE_AT;
   const fill = progress(frame, RESOLVE_AT, 30);
-  const flag = progress(frame, 50, 30) * (1 - progress(frame, RESOLVE_AT, 20));
+  const flag = progress(frame, 30, 24) * (1 - progress(frame, RESOLVE_AT, 20));
   const confirmGlow = progress(frame, RESOLVE_AT, 14) * (1 - progress(frame, RESOLVE_AT + 30, 40));
   const knownTotal = RACE_ITEMS.filter((item) => item.id !== "gaze").reduce((s, i) => s + i.value, 0);
   const total = knownTotal + (resolved ? Math.round(fill) : 0);
@@ -87,7 +87,7 @@ export const HowAsk: React.FC = () => {
       support="Four items were clear. One was never mentioned."
     >
       <div style={{ width: 960, display: "flex", flexDirection: "column", gap: 36 }}>
-        <FadeUp delay={14} duration={34} distance={30}>
+        <FadeUp delay={8} duration={28} distance={30}>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             {RACE_ITEMS.map((item) => {
               const isGaze = item.id === "gaze";
@@ -150,7 +150,7 @@ export const HowAsk: React.FC = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            opacity: progress(frame, 30, 30),
+            opacity: progress(frame, 16, 24),
           }}
         >
           <div style={{ display: "flex", alignItems: "baseline", gap: 16 }}>

@@ -8,7 +8,7 @@ import { TOTAL_FRAMES } from "./timeline";
 /** The poster animates in over these frames; the last frame is exported as poster.png. */
 const POSTER_FRAMES = 180;
 
-const defaultPitchProps: PitchProps = { musicSrc: null, voiceoverSrc: null };
+const defaultPitchProps: PitchProps = { musicSrc: "music.mp3", voiceoverSrc: null };
 
 export const RemotionRoot: React.FC = () => (
   <>

@@ -19,9 +19,9 @@ const TRANSCRIPT: Segment[] = [
   { text: "." },
 ];
 
-const TYPE_START = 48;
-const CHARS_PER_SECOND = 30;
-const HIGHLIGHT_AT = 196;
+const TYPE_START = 26;
+const CHARS_PER_SECOND = 42;
+const HIGHLIGHT_AT = 134;
 
 const Waveform: React.FC<{ speaking: number }> = ({ speaking }) => {
   const frame = useCurrentFrame();
@@ -122,7 +122,7 @@ export const HowTalk: React.FC = () => {
       headline="The medic just talks."
       support="Voice or text. No form, no tapping."
     >
-      <FadeUp delay={14} duration={36} distance={40}>
+      <FadeUp delay={8} duration={30} distance={40}>
         <div
           style={{
             width: 940,

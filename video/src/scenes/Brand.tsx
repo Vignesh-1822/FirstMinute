@@ -15,14 +15,14 @@ export const Reveal: React.FC = () => {
       <AbsoluteFill
         style={{ alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 70 }}
       >
-        <Wordmark start={10} size={160} />
+        <Wordmark start={6} size={160} />
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 14 }}>
-          <FadeUp delay={66} duration={34}>
+          <FadeUp delay={40} duration={28}>
             <div style={{ fontSize: 52, color: color.textSoft, letterSpacing: "-0.02em" }}>
               The first minute decides the stroke.
             </div>
           </FadeUp>
-          <FadeUp delay={96} duration={34}>
+          <FadeUp delay={58} duration={28}>
             <div style={{ fontSize: 52, color: color.text, fontWeight: 500, letterSpacing: "-0.02em" }}>
               We make it count.
             </div>
@@ -36,20 +36,20 @@ export const Reveal: React.FC = () => {
 /** 12. Close: the name again, the stakes, then fade to black. */
 export const Close: React.FC = () => {
   const frame = useCurrentFrame();
-  const fadeToBlack = 1 - fadeOut(frame, 150, 40);
+  const fadeToBlack = 1 - fadeOut(frame, 112, 36);
   return (
     <Backdrop glow={{ color: color.signalGlow, x: 50, y: 40, size: 900, opacity: 0.22 }}>
       <AbsoluteFill
         style={{ alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 70 }}
       >
-        <Wordmark start={6} size={132} />
+        <Wordmark start={4} size={132} />
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 14 }}>
-          <FadeUp delay={44} duration={34}>
+          <FadeUp delay={26} duration={28}>
             <div style={{ fontSize: 52, color: color.textSoft, letterSpacing: "-0.02em" }}>
               Every minute is 1.9 million neurons.
             </div>
           </FadeUp>
-          <FadeUp delay={74} duration={34}>
+          <FadeUp delay={44} duration={28}>
             <div style={{ fontSize: 52, color: color.text, fontWeight: 500, letterSpacing: "-0.02em" }}>
               Give them back.
             </div>

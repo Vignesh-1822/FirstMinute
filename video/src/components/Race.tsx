@@ -210,9 +210,9 @@ type RaceCardProps = {
 /** Full RACE card: header with Jev pulse, five rows, total with LVO chip. */
 export const RaceCard: React.FC<RaceCardProps> = ({ start, pulseAt, width = 960, scale = 0.88 }) => {
   const frame = useCurrentFrame();
-  const totalIn = progress(frame, start + 70, 40);
+  const totalIn = progress(frame, start + 56, 30);
   const total = RACE_ITEMS.reduce((sum, item) => sum + item.value, 0);
-  const lvoIn = progress(frame, start + 100, 30);
+  const lvoIn = progress(frame, start + 80, 24);
 
   return (
     <div

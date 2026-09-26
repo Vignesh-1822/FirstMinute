@@ -31,7 +31,7 @@ const activeStep = (frame: number): number => {
 /** 6. How it works: five steps, one at a time, with a steady progress rail. */
 export const HowItWorks: React.FC = () => {
   const frame = useCurrentFrame();
-  const railIn = progress(frame, 20, 30);
+  const railIn = progress(frame, 12, 24);
   return (
     <AbsoluteFill>
       <TransitionSeries>

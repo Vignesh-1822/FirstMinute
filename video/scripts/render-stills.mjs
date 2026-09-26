@@ -4,7 +4,7 @@ import path from "node:path";
 import { bundle } from "@remotion/bundler";
 import { renderStill, selectComposition } from "@remotion/renderer";
 
-const DEFAULT_FRAMES = [170, 450, 600, 760, 890, 1035, 1220, 1455, 1480, 1700, 1860, 1985, 2170, 2270, 2520, 2700, 2900, 3080, 3280, 3420, 3560];
+const DEFAULT_FRAMES = [120, 290, 480, 700, 860, 1030, 1230, 1420, 1630, 1820, 1950, 2090, 2230, 2360, 2460, 2580];
 const frames = process.argv.slice(2).map(Number);
 const targets = frames.length > 0 ? frames : DEFAULT_FRAMES;
 

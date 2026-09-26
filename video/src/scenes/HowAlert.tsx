@@ -6,9 +6,9 @@ import { StepLayout } from "../components/StepLayout";
 import { progress } from "../lib/anim";
 import { color, FONT_MONO, FONT_SANS } from "../theme";
 
-const CARD_AT = 70;
-const LOCATION_AT = 118;
-const REPLY_AT = 170;
+const CARD_AT = 48;
+const LOCATION_AT = 80;
+const REPLY_AT = 112;
 
 const SBAR: { key: string; text: string }[] = [
   { key: "S", text: "68 M · sudden right-sided weakness, aphasia" },
@@ -116,9 +116,9 @@ const LocationBubble: React.FC = () => {
 };
 
 const EVENTS: { at: number; stamp: string; label: string; via: string }[] = [
-  { at: 30, stamp: "t+0.0s", label: "Medic confirms", via: "one reply: CONFIRM" },
-  { at: 58, stamp: "t+0.6s", label: "SBAR handoff written", via: "LLM on GMI Cloud" },
-  { at: 86, stamp: "t+1.2s", label: "Group chat opened", via: "iMessage via Photon" },
+  { at: 16, stamp: "t+0.0s", label: "Medic confirms", via: "one reply: CONFIRM" },
+  { at: 34, stamp: "t+0.6s", label: "SBAR handoff written", via: "LLM on GMI Cloud" },
+  { at: 52, stamp: "t+1.2s", label: "Group chat opened", via: "iMessage via Photon" },
 ];
 
 const EventRail: React.FC = () => {
@@ -172,7 +172,7 @@ export const HowAlert: React.FC = () => (
   >
     <div style={{ display: "flex", alignItems: "center", gap: 70 }}>
       <EventRail />
-      <FadeUp delay={10} duration={40} distance={50}>
+      <FadeUp delay={6} duration={32} distance={50}>
         <Phone
           width={480}
           height={900}
