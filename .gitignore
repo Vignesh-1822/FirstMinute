@@ -1,0 +1,25 @@
+# env / secrets
+.env
+.env.*
+!.env.example
+
+# python
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# node
+node_modules/
+dist/
+build/
+.vite/
+
+# video renders
+video/out/
+
+# os / editor
+.DS_Store
+.idea/
+.vscode/
