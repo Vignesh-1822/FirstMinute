@@ -1,0 +1,384 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/inter-tight";
+@import "@fontsource-variable/jetbrains-mono";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ------------------------------------------------------------------ *
+ * Tokens
+ * Neutrals carry 95% of every surface. One signal colour (red-orange)
+ * is reserved for stroke / LVO / alert. Status colours are small marks.
+ * `*-ink` variants are the text-safe versions (>= 4.5:1 on card).
+ * ------------------------------------------------------------------ */
+
+:root {
+  --radius: 0.75rem;
+
+  --background: oklch(0.985 0 0);
+  --foreground: oklch(0.18 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0 0);
+  --primary: oklch(0.2 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.955 0 0);
+  --secondary-foreground: oklch(0.2 0 0);
+  --muted: oklch(0.955 0 0);
+  --muted-foreground: oklch(0.48 0 0);
+  --faint-foreground: oklch(0.6 0 0);
+  --accent: oklch(0.955 0 0);
+  --accent-foreground: oklch(0.2 0 0);
+  --destructive: oklch(0.55 0.2 33);
+  --border: oklch(0.905 0 0);
+  --border-strong: oklch(0.84 0 0);
+  --input: oklch(0.9 0 0);
+  --ring: oklch(0.55 0 0);
+
+  --signal: oklch(0.64 0.21 35);
+  --signal-ink: oklch(0.53 0.19 33);
+  --signal-soft: oklch(0.64 0.21 35 / 0.09);
+  --confident: oklch(0.72 0.15 160);
+  --confident-ink: oklch(0.48 0.1 162);
+  --uncertain: oklch(0.8 0.15 80);
+  --uncertain-ink: oklch(0.52 0.11 70);
+  --uncertain-soft: oklch(0.8 0.15 80 / 0.14);
+
+  --dot: oklch(0 0 0 / 0.085);
+  --highlight: oklch(1 0 0 / 0.9);
+  --shade: oklch(0 0 0 / 0.05);
+  --map-water: oklch(0.93 0.012 230);
+  --map-land: oklch(0.975 0 0);
+  --map-street: oklch(0.87 0 0);
+
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.955 0 0);
+  --card: oklch(0.178 0 0);
+  --card-foreground: oklch(0.955 0 0);
+  --popover: oklch(0.2 0 0);
+  --popover-foreground: oklch(0.955 0 0);
+  --primary: oklch(0.94 0 0);
+  --primary-foreground: oklch(0.17 0 0);
+  --secondary: oklch(0.225 0 0);
+  --secondary-foreground: oklch(0.955 0 0);
+  --muted: oklch(0.215 0 0);
+  --muted-foreground: oklch(0.7 0 0);
+  --faint-foreground: oklch(0.56 0 0);
+  --accent: oklch(0.235 0 0);
+  --accent-foreground: oklch(0.955 0 0);
+  --destructive: oklch(0.7 0.18 33);
+  --border: oklch(1 0 0 / 0.085);
+  --border-strong: oklch(1 0 0 / 0.16);
+  --input: oklch(1 0 0 / 0.12);
+  --ring: oklch(0.62 0 0);
+
+  --signal: oklch(0.66 0.21 35);
+  --signal-ink: oklch(0.74 0.16 40);
+  --signal-soft: oklch(0.66 0.21 35 / 0.14);
+  --confident: oklch(0.72 0.15 160);
+  --confident-ink: oklch(0.8 0.13 160);
+  --uncertain: oklch(0.8 0.15 80);
+  --uncertain-ink: oklch(0.85 0.13 82);
+  --uncertain-soft: oklch(0.8 0.15 80 / 0.1);
+
+  --dot: oklch(1 0 0 / 0.06);
+  --highlight: oklch(1 0 0 / 0.055);
+  --shade: oklch(0 0 0 / 0.35);
+  --map-water: oklch(0.24 0.018 235);
+  --map-land: oklch(0.165 0 0);
+  --map-street: oklch(1 0 0 / 0.08);
+
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@theme inline {
+  --font-sans: "Inter Tight Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-sans);
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-faint: var(--faint-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-signal: var(--signal);
+  --color-signal-ink: var(--signal-ink);
+  --color-signal-soft: var(--signal-soft);
+  --color-confident: var(--confident);
+  --color-confident-ink: var(--confident-ink);
+  --color-uncertain: var(--uncertain);
+  --color-uncertain-ink: var(--uncertain-ink);
+  --color-uncertain-soft: var(--uncertain-soft);
+  --color-map-water: var(--map-water);
+  --color-map-land: var(--map-land);
+  --color-map-street: var(--map-street);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.17);
+  --radius-2xl: calc(var(--radius) * 1.5);
+  --radius-3xl: calc(var(--radius) * 2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --animate-shimmer: shimmer 2.4s linear infinite;
+  --animate-ping-slow: ping-slow 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-blink: blink 1.1s steps(2, start) infinite;
+
+  @keyframes shimmer {
+    from {
+      background-position: 100% 0;
+    }
+    to {
+      background-position: -100% 0;
+    }
+  }
+  @keyframes ping-slow {
+    0% {
+      transform: scale(1);
+      opacity: 0.55;
+    }
+    80%,
+    100% {
+      transform: scale(2.4);
+      opacity: 0;
+    }
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes blink {
+    to {
+      visibility: hidden;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Utilities
+ * ------------------------------------------------------------------ */
+
+/* Faint dot grid used behind hero, map and panels. */
+@utility bg-dot-grid {
+  background-image: radial-gradient(var(--dot) 1px, transparent 1.2px);
+  background-size: 16px 16px;
+}
+
+/* Very light film grain — applied to page shells only. */
+@utility grain {
+  position: relative;
+  isolation: isolate;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* Card surface: hairline border + subtle inner top highlight. */
+@utility surface {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  box-shadow:
+    inset 0 1px 0 0 var(--highlight),
+    0 1px 2px 0 var(--shade);
+}
+
+/* Recessed well (inputs, transcript, histograms). */
+@utility well {
+  background-color: color-mix(in oklch, var(--muted) 70%, transparent);
+  border: 1px solid var(--border);
+  box-shadow: inset 0 1px 2px 0 var(--shade);
+}
+
+/* Shimmer text for live states. */
+@utility shimmer-text {
+  color: transparent;
+  background-image: linear-gradient(
+    100deg,
+    var(--muted-foreground) 40%,
+    var(--foreground) 50%,
+    var(--muted-foreground) 60%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: var(--animate-shimmer);
+}
+
+/* Tactile neutral button (Pixel-Perfect "credits" material). */
+@utility tactile {
+  color: var(--foreground);
+  background: linear-gradient(to bottom, var(--card), color-mix(in oklch, var(--card) 94%, var(--foreground)));
+  box-shadow:
+    0 1px 2px oklch(0 0 0 / 0.14),
+    0 2px 4px oklch(0 0 0 / 0.06),
+    inset 0 1px 0 var(--highlight),
+    inset 0 -2px 0 oklch(0 0 0 / 0.07),
+    0 0 0 1px var(--border-strong);
+  &:active:not(:disabled) {
+    box-shadow:
+      0 0 0 oklch(0 0 0 / 0),
+      inset 0 1px 2px oklch(0 0 0 / 0.12),
+      0 0 0 1px var(--border-strong);
+  }
+}
+
+/* Tactile signal button (confirm / pre-alert). */
+@utility tactile-signal {
+  color: oklch(0.99 0 0);
+  text-shadow: 0 1px 0 oklch(0.35 0.12 30 / 0.45);
+  background: linear-gradient(
+    to bottom,
+    oklch(0.69 0.2 38),
+    oklch(0.6 0.21 33)
+  );
+  box-shadow:
+    0 1px 2px oklch(0.3 0.1 30 / 0.35),
+    0 4px 12px oklch(0.64 0.21 35 / 0.28),
+    inset 0 1px 0 oklch(1 0 0 / 0.3),
+    inset 0 -2px 0 oklch(0 0 0 / 0.14),
+    0 0 0 1px oklch(0.5 0.18 32);
+  &:active:not(:disabled) {
+    box-shadow:
+      inset 0 2px 4px oklch(0.3 0.12 30 / 0.4),
+      0 0 0 1px oklch(0.5 0.18 32);
+  }
+}
+
+/* Tactile inverted (primary CTA on landing). */
+@utility tactile-ink {
+  color: var(--primary-foreground);
+  background: linear-gradient(
+    to bottom,
+    color-mix(in oklch, var(--primary) 88%, var(--primary-foreground)),
+    var(--primary)
+  );
+  box-shadow:
+    0 1px 2px oklch(0 0 0 / 0.25),
+    0 4px 10px oklch(0 0 0 / 0.12),
+    inset 0 1px 0 oklch(1 0 0 / 0.18),
+    inset 0 -2px 0 oklch(0 0 0 / 0.2),
+    0 0 0 1px var(--primary);
+  &:active:not(:disabled) {
+    box-shadow:
+      inset 0 2px 4px oklch(0 0 0 / 0.35),
+      0 0 0 1px var(--primary);
+  }
+}
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility fade-x {
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01", "cv11";
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  ::selection {
+    background: var(--signal-soft);
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
