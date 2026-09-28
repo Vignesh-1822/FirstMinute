@@ -45,7 +45,7 @@ export const BrandCard: React.FC = () => (
         }}
       >
         <span style={{ width: 10, height: 10, borderRadius: 999, backgroundColor: color.signal }} />
-        TOP 5 FINISH · HACKATHON 2026
+        TOP 5 · THE AI COLLECTIVE HACKATHON
       </div>
 
       <div style={{ marginTop: 52 }}>
